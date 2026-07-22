@@ -5,13 +5,11 @@ local player = Players.LocalPlayer
 local pGui = player:WaitForChild("PlayerGui")
 
 -- Nettoyage de l'ancienne interface si elle existe
-if pGui:FindFirstChild("MiniMenuGui") then
-    pGui.MiniMenuGui:Destroy()
+if pGui:FindFirstChild("SAB Exploit Script") then
+    pGui.SAB Exploit Script:Destroy()
 end
-
--- --- INTERFACE COMPACTE ---
 local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "MiniMenuGui"
+screenGui.Name = "SAB Exploit Script"
 screenGui.ResetOnSpawn = false
 screenGui.Parent = pGui
 
@@ -30,7 +28,7 @@ corner.Parent = mainFrame
 
 local title = Instance.new("TextLabel")
 title.Size = UDim2.new(1, 0, 0, 25)
-title.Text = "⚡ Mini Menu Pro"
+title.Text = "⚡Steal a brainrot script"
 title.TextColor3 = Color3.fromRGB(255, 255, 255)
 title.TextSize = 12
 title.Font = Enum.Font.SourceSansBold
@@ -40,8 +38,6 @@ title.Parent = mainFrame
 local titleCorner = Instance.new("UICorner")
 titleCorner.CornerRadius = UDim.new(0, 8)
 titleCorner.Parent = title
-
--- --- VARIABLES ---
 local jumpPowerVal = 100
 local walkSpeedVal = 16
 local isNoclip = false
@@ -51,8 +47,6 @@ local speedConnection = nil
 local noclipConnection = nil
 local freezeConnection = nil
 local frozenTarget = nil
-
--- --- BOUTONS DE L'INTERFACE ---
 local noclipBtn = Instance.new("TextButton")
 noclipBtn.Size = UDim2.new(0.9, 0, 0, 24)
 noclipBtn.Position = UDim2.new(0.05, 0, 0.12, 0)
@@ -66,7 +60,7 @@ noclipBtn.Parent = mainFrame
 local tpSafeBtn = Instance.new("TextButton")
 tpSafeBtn.Size = UDim2.new(0.9, 0, 0, 24)
 tpSafeBtn.Position = UDim2.new(0.05, 0, 0.25, 0)
-tpSafeBtn.Text = "TP Fluide (Moins de Rubber)"
+tpSafeBtn.Text = "Teleport"
 tpSafeBtn.BackgroundColor3 = Color3.fromRGB(180, 120, 40)
 tpSafeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 tpSafeBtn.Font = Enum.Font.SourceSansBold
@@ -106,14 +100,12 @@ resetBtn.Parent = mainFrame
 local freezeBtn = Instance.new("TextButton")
 freezeBtn.Size = UDim2.new(0.9, 0, 0, 24)
 freezeBtn.Position = UDim2.new(0.05, 0, 0.78, 0)
-freezeBtn.Text = ";fr [Cible]"
+freezeBtn.Text = "freeze [player]"
 freezeBtn.BackgroundColor3 = Color3.fromRGB(140, 50, 180)
 freezeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 freezeBtn.Font = Enum.Font.SourceSansBold
 freezeBtn.TextSize = 11
 freezeBtn.Parent = mainFrame
-
--- --- LOGIQUE APPLIQUER STATS & SPEED ---
 local function applyStats()
     local char = player.Character
     if not char then return end
@@ -133,8 +125,6 @@ local function applyStats()
         end)
     end
 end
-
--- --- LOGIQUE NOCLIP ---
 noclipBtn.MouseButton1Click:Connect(function()
     isNoclip = not isNoclip
     if isNoclip then
@@ -192,7 +182,7 @@ tpSafeBtn.MouseButton1Click:Connect(function()
         tpSafeBtn.Text = "Clique n'importe où..."
         tpSafeBtn.BackgroundColor3 = Color3.fromRGB(50, 180, 50)
     else
-        tpSafeBtn.Text = "TP Fluide (Moins de Rubber)"
+        tpSafeBtn.Text = "Teleport"
         tpSafeBtn.BackgroundColor3 = Color3.fromRGB(180, 120, 40)
     end
 end)
@@ -207,8 +197,6 @@ mouse.Button1Down:Connect(function()
         tpSafeBtn.BackgroundColor3 = Color3.fromRGB(180, 120, 40)
     end
 end)
-
--- --- LOGIQUE SPEED & JUMP ---
 speedBtn.MouseButton1Click:Connect(function()
     if walkSpeedVal == 16 then walkSpeedVal = 32
     elseif walkSpeedVal == 32 then walkSpeedVal = 64
@@ -240,8 +228,6 @@ player.CharacterAdded:Connect(function(char)
 end)
 
 applyStats()
-
--- --- LOGIQUE FREEZE JOUEUR (;fr) ---
 local function findPlayer(nameInput)
     if not nameInput or nameInput == "" then return nil end
     nameInput = string.lower(nameInput)
@@ -271,7 +257,7 @@ local function toggleFreeze(targetPlayer)
                 if not frozenTarget or not frozenTarget.Character then
                     if freezeConnection then freezeConnection:Disconnect() end
                     frozenTarget = nil
-                    freezeBtn.Text = ";fr [Cible]"
+                    freezeBtn.Text = "Freeze [player]"
                     return
                 end
                 local targetRoot = frozenTarget.Character:FindFirstChild("HumanoidRootPart")
